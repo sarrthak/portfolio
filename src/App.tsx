@@ -4,9 +4,13 @@ import {
   ArrowRight,
   Box,
   Code2,
+  Download,
+  Eye,
   ExternalLink,
+  FileText,
   Github,
   GraduationCap,
+  Linkedin,
   Menu,
   Moon,
   PackageCheck,
@@ -32,8 +36,30 @@ const skills: Chip[] = [
   { label: 'Docker', tone: 'gray' },
 ];
 
-const footerLinks = ['GitHub', 'LinkedIn', 'Scholar', 'Email'];
-const navLinks = ['Projects', 'Experience', 'Stack', 'Research'];
+const resumeUrl = '/Sarrthak_Resume_MLE_2.pdf';
+const footerLinks = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/sarrthak',
+    icon: Github,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/tripsarrthak28',
+    icon: Linkedin,
+  },
+  {
+    label: 'Scholar',
+    href: '#research',
+    icon: GraduationCap,
+  },
+  {
+    label: 'Email',
+    href: 'mailto:sarthak.trip99@gmail.com',
+    icon: FileText,
+  },
+];
+const navLinks = ['Projects', 'Experience', 'Stack', 'Resume', 'Research'];
 
 const codeLines = [
   'def optimized_step(self, closure=None):',
@@ -98,7 +124,7 @@ function App() {
           <button className="icon-button desktop-only" type="button" aria-label="Open code view">
             <Code2 size={18} strokeWidth={2} />
           </button>
-          <a className="resume-button" href="#research">
+          <a className="resume-button" href="#resume">
             Resume
           </a>
           <button className="icon-button mobile-only" type="button" aria-label="Open menu">
@@ -224,6 +250,29 @@ function App() {
           </div>
         </section>
 
+        <section className="card resume-card" id="resume" aria-labelledby="resume-title">
+          <div className="section-heading compact">
+            <span className="section-icon">
+              <FileText size={15} strokeWidth={2} />
+            </span>
+            <h2 id="resume-title">Resume</h2>
+          </div>
+          <p className="body-copy">
+            Machine learning engineering resume with project, research, and
+            production software experience.
+          </p>
+          <div className="resume-actions" aria-label="Resume actions">
+            <a className="primary-action" href={resumeUrl} target="_blank" rel="noreferrer">
+              View Resume
+              <Eye size={15} strokeWidth={2} />
+            </a>
+            <a className="secondary-action" href={resumeUrl} download>
+              Download PDF
+              <Download size={15} strokeWidth={2} />
+            </a>
+          </div>
+        </section>
+
         <section className="card publication-card" id="research" aria-labelledby="publication-title">
           <div className="publication-meta">
             <p className="publication-label">Latest Publication</p>
@@ -248,9 +297,15 @@ function App() {
       <footer className="footer">
         <p>(c) 2026 DS_Student@IUB :: System.Ready</p>
         <nav aria-label="Social links">
-          {footerLinks.map((link) => (
-            <a href="#top" key={link}>
-              {link}
+          {footerLinks.map(({ href, icon: Icon, label }) => (
+            <a
+              href={href}
+              key={label}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel={href.startsWith('http') ? 'noreferrer' : undefined}
+            >
+              <Icon size={13} strokeWidth={2} />
+              {label}
             </a>
           ))}
         </nav>

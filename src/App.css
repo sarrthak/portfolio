@@ -367,6 +367,7 @@ button {
 }
 
 .primary-action,
+.secondary-action,
 .text-action {
   display: inline-flex;
   align-items: center;
@@ -382,6 +383,15 @@ button {
   border: 1px solid color-mix(in srgb, var(--primary) 24%, var(--line));
   border-radius: 6px;
   background: var(--primary-soft);
+}
+
+.secondary-action {
+  width: 100%;
+  min-height: 40px;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-raised);
 }
 
 .text-action {
@@ -566,6 +576,15 @@ button {
   margin-bottom: 54px;
 }
 
+.resume-card .body-copy {
+  margin-bottom: 18px;
+}
+
+.resume-actions {
+  display: grid;
+  gap: 10px;
+}
+
 .publication-label {
   display: inline-flex;
   min-height: 19px;
@@ -621,6 +640,7 @@ button {
   min-height: 29px;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   padding: 0 10px;
   border-radius: 6px;
   background: var(--surface-raised);
@@ -773,11 +793,13 @@ button {
   }
 
   .stack-card,
+  .resume-card,
   .publication-card {
     min-height: 180px;
   }
 
   .publication-card {
+    grid-column: 1 / -1;
     margin-bottom: 0;
   }
 
@@ -859,6 +881,7 @@ button {
   }
 
   .stack-card,
+  .resume-card,
   .publication-card {
     padding: 28px;
   }
@@ -871,6 +894,19 @@ button {
     min-height: 32px;
     padding: 0 15px;
     font-size: 14px;
+  }
+
+  .resume-card {
+    display: grid;
+    align-content: space-between;
+  }
+
+  .resume-card .body-copy {
+    margin-bottom: 30px;
+  }
+
+  .resume-actions {
+    grid-template-columns: 1fr 1fr;
   }
 
   .publication-meta {
