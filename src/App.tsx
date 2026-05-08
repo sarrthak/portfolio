@@ -37,6 +37,33 @@ const skills: Chip[] = [
   { label: 'Docker', tone: 'gray' },
 ];
 
+const educationItems = [
+  {
+    school: 'Indiana University Bloomington',
+    degree: 'M.S. Data Science',
+    dates: '2025 - 2027',
+    subjects: [
+      'Applied Machine Learning',
+      'Applied Database Technologies',
+      'Computer Vision',
+    ],
+  },
+  {
+    school: 'Vellore Institute of Technology',
+    degree: 'B.Tech Computer Science',
+    dates: '2019 - 2023',
+    cgpa: 'CGPA 3.8/4',
+    subjects: [
+      'Data Mining',
+      'Neural Networks',
+      'Machine Learning',
+      'Cloud Computing',
+      'Git',
+      'Artificial Intelligence',
+    ],
+  },
+];
+
 const resumeUrl = '/Sarrthak_Resume_MLE_2.pdf';
 const footerLinks = [
   {
@@ -51,12 +78,12 @@ const footerLinks = [
   },
   {
     label: 'Scholar',
-    href: '#research',
+    href: 'https://scholar.google.com/',
     icon: GraduationCap,
   },
   {
     label: 'Email',
-    href: 'mailto:sarthak.trip99@gmail.com',
+    href: 'mailto:sarrtrip@iu.edu',
     icon: FileText,
   },
 ];
@@ -77,7 +104,7 @@ const noteboardHighlights = [
   },
   {
     label: 'Result',
-    text: 'Hardened the platform for reliable demos and deployment with session-scoped auth cookies, diagnostics and structured backend logs, durable Redis AOF, stable Docker volumes, loopback-only debug ports, and provider-aware OpenAI/OpenRouter routing.',
+    text: "Hardened the platform for reliable demos and deployment with session-scoped auth cookies, diagnostics and structured backend logs, durable Redis AOF, stable Docker volumes, loopback-only debug ports, provider-aware OpenAI/OpenRouter routing, and finalist recognition at IUB's flagship Cheng Wu Challenge 2026.",
   },
 ];
 
@@ -247,10 +274,27 @@ function App() {
               <span className="soft-icon">
                 <GraduationCap size={18} strokeWidth={1.9} />
               </span>
-              <span className="year-chip">2023 - 2025</span>
+              <span className="year-chip">Education</span>
             </div>
-            <h2 id="education-title">M.S. Data Science</h2>
-            <p className="body-copy">Indiana University Bloomington</p>
+            <div className="education-list">
+              {educationItems.map((item, index) => (
+                <article className="education-entry" key={item.school}>
+                  <div className="education-heading">
+                    <h2 id={index === 0 ? 'education-title' : undefined}>{item.degree}</h2>
+                    <span className="year-chip">{item.dates}</span>
+                  </div>
+                  <p className="body-copy">{item.school}</p>
+                  {item.cgpa ? <p className="education-meta">{item.cgpa}</p> : null}
+                  <div className="subject-row" aria-label={`${item.school} subjects`}>
+                    {item.subjects.map((subject) => (
+                      <span className="subject-chip" key={subject}>
+                        {subject}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
           </section>
         </div>
 

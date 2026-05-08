@@ -540,6 +540,54 @@ button {
   margin-bottom: 25px;
 }
 
+.education-list {
+  display: grid;
+  gap: 18px;
+}
+
+.education-entry {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+}
+
+.education-entry:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.education-heading {
+  display: grid;
+  gap: 6px;
+}
+
+.education-meta {
+  margin: 0;
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.subject-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 2px;
+}
+
+.subject-chip {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+  padding: 0 9px;
+  color: var(--muted);
+  font-size: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--surface-raised) 78%, transparent);
+}
+
 .year-chip {
   color: var(--muted);
   font-size: 10px;
@@ -891,9 +939,13 @@ button {
     line-height: 1.52;
   }
 
-  .activity-card,
-  .education-card {
+  .activity-card {
     min-height: 230px;
+    padding: 28px;
+  }
+
+  .education-card {
+    min-height: 360px;
     padding: 28px;
   }
 
@@ -915,13 +967,25 @@ button {
     margin-top: 22px;
   }
 
-  .education-card {
-    display: grid;
-    align-content: space-between;
+  .card-topline {
+    margin-bottom: 28px;
   }
 
-  .card-topline {
-    margin-bottom: 54px;
+  .education-heading {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+
+  .education-entry h2 {
+    font-size: 18px;
+  }
+
+  .education-entry .body-copy {
+    font-size: 13px;
+  }
+
+  .subject-chip {
+    font-size: 10px;
   }
 
   .stack-card,
