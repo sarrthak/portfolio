@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
   ArrowDown,
-  ArrowRight,
   Box,
   Code2,
   Download,
@@ -13,7 +12,6 @@ import {
   Linkedin,
   Menu,
   Moon,
-  PackageCheck,
   SquareTerminal,
   Sun,
   Workflow,
@@ -87,7 +85,7 @@ const footerLinks = [
     icon: FileText,
   },
 ];
-const navLinks = ['Projects', 'Experience', 'Noteboard', 'Stack', 'Resume', 'Research'];
+const navLinks = ['Projects', 'Experience', 'Noteboard', 'Stack', 'Resume'];
 
 const noteboardHighlights = [
   {
@@ -106,20 +104,6 @@ const noteboardHighlights = [
     label: 'Result',
     text: "Hardened the platform for reliable demos and deployment with session-scoped auth cookies, diagnostics and structured backend logs, durable Redis AOF, stable Docker volumes, loopback-only debug ports, provider-aware OpenAI/OpenRouter routing, and finalist recognition at IUB's flagship Cheng Wu Challenge 2026.",
   },
-];
-
-const codeLines = [
-  'def optimized_step(self, closure=None):',
-  '    loss = None',
-  '    if closure is not None:',
-  '        loss = closure()',
-  '',
-  '    for group in self.param_groups:',
-  '        for p in group["params"]:',
-  '            if p.grad is None:',
-  '                continue',
-  '            grad = p.grad.data',
-  '            # Apply custom momentum logic',
 ];
 
 type Theme = 'light' | 'dark';
@@ -191,32 +175,49 @@ function App() {
           <p className="availability-chip">Open for hire</p>
           <p className="terminal-pill">&gt; System.Ready()_</p>
         </div>
-        <a className="scroll-cue" href="#featured" aria-label="Scroll to featured project">
+        <a className="scroll-cue" href="#noteboard" aria-label="Scroll to Noteboard project">
           <ArrowDown size={17} strokeWidth={2.2} />
         </a>
       </section>
 
       <div className="portfolio-grid" id="projects">
-        <section className="card project-card" id="featured" aria-labelledby="featured-title">
-          <a className="floating-action" href="#activity" aria-label="View featured project">
+        <section className="card project-card" id="noteboard" aria-labelledby="noteboard-title">
+          <a
+            className="floating-action"
+            href="https://github.com/sarrthak"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="View Sarrthak's GitHub profile"
+          >
             <ExternalLink size={20} strokeWidth={1.9} />
           </a>
-          <p className="eyebrow">Featured Project</p>
-          <h2 id="featured-title">Neural Network Optimization</h2>
+          <div className="section-heading compact">
+            <span className="section-icon">
+              <Workflow size={15} strokeWidth={2} />
+            </span>
+            <p className="eyebrow">Product Build</p>
+          </div>
+          <h2 id="noteboard-title">Noteboard.ai</h2>
           <p className="body-copy">
-            Implemented a novel gradient descent variant that accelerates
-            convergence in deep CNNs by 15% without sacrificing generalization
-            accuracy.
+            AI-native project workspace for converting product discovery into
+            architecture, tickets, agent-assisted implementation, and traceable
+            activity.
           </p>
-          <pre className="code-window" aria-label="Optimization code preview">
-            <code>
-              {codeLines.map((line, index) => (
-                <span key={`${index}-${line}`}>{line}</span>
-              ))}
-            </code>
-          </pre>
-          <a className="primary-action mobile-project-action" href="#activity">
-            View Project
+          <dl className="star-list" aria-label="Noteboard project STAR writeup">
+            {noteboardHighlights.map((item) => (
+              <div className="star-item" key={item.label}>
+                <dt>{item.label}</dt>
+                <dd>{item.text}</dd>
+              </div>
+            ))}
+          </dl>
+          <a
+            className="primary-action mobile-project-action"
+            href="https://github.com/sarrthak"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View GitHub
             <ExternalLink size={16} strokeWidth={1.9} />
           </a>
         </section>
@@ -298,29 +299,6 @@ function App() {
           </section>
         </div>
 
-        <section className="card noteboard-card" id="noteboard" aria-labelledby="noteboard-title">
-          <div className="section-heading compact">
-            <span className="section-icon">
-              <Workflow size={15} strokeWidth={2} />
-            </span>
-            <p className="eyebrow">Product Build</p>
-          </div>
-          <h2 id="noteboard-title">Noteboard.ai</h2>
-          <p className="body-copy">
-            AI-native project workspace for converting product discovery into
-            architecture, tickets, agent-assisted implementation, and traceable
-            activity.
-          </p>
-          <dl className="star-list" aria-label="Noteboard project STAR writeup">
-            {noteboardHighlights.map((item) => (
-              <div className="star-item" key={item.label}>
-                <dt>{item.label}</dt>
-                <dd>{item.text}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-
         <section className="card stack-card" id="stack" aria-labelledby="stack-title">
           <div className="section-heading compact">
             <span className="accent-icon">
@@ -358,26 +336,6 @@ function App() {
               <Download size={15} strokeWidth={2} />
             </a>
           </div>
-        </section>
-
-        <section className="card publication-card" id="research" aria-labelledby="publication-title">
-          <div className="publication-meta">
-            <p className="publication-label">Latest Publication</p>
-            <p className="status-line">
-              <PackageCheck size={12} strokeWidth={2} />
-              NeurIPS 2023 (Under Review)
-            </p>
-          </div>
-          <h2 id="publication-title">Predictive Modeling of Temporal Graph Networks</h2>
-          <p className="body-copy">
-            Proposing a scalable framework for dynamic link prediction in
-            large-scale temporal graphs utilizing attention-based message
-            passing and temporal encoding...
-          </p>
-          <a className="text-action" href="#top">
-            Read Abstract
-            <ArrowRight size={15} strokeWidth={2} />
-          </a>
         </section>
       </div>
 
