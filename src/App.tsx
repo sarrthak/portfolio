@@ -16,6 +16,7 @@ import {
   PackageCheck,
   SquareTerminal,
   Sun,
+  Workflow,
 } from 'lucide-react';
 
 type Chip = {
@@ -59,7 +60,26 @@ const footerLinks = [
     icon: FileText,
   },
 ];
-const navLinks = ['Projects', 'Experience', 'Stack', 'Resume', 'Research'];
+const navLinks = ['Projects', 'Experience', 'Noteboard', 'Stack', 'Resume', 'Research'];
+
+const noteboardHighlights = [
+  {
+    label: 'Situation',
+    text: 'Product and engineering teams needed a shared AI workspace that could turn rough product conversations, tickets, and service dependencies into executable design and development workflows.',
+  },
+  {
+    label: 'Task',
+    text: 'Built Noteboard.ai as a full-stack project operating system using Next.js 14, FastAPI, Redis/Celery, Neo4j, Weaviate, and Docker Compose across auth, project, huddle, design, and dev surfaces.',
+  },
+  {
+    label: 'Action',
+    text: 'Shipped Huddle voice-to-ticket capture, Design Auto-Architect with Mermaid/canvas HLD generation, and Dev Mission Control with LangGraph planner/drafter/verifier agents, WebSocket terminal logs, Redis checkpoint approvals, and runtime model selection.',
+  },
+  {
+    label: 'Result',
+    text: 'Hardened the platform for reliable demos and deployment with session-scoped auth cookies, diagnostics and structured backend logs, durable Redis AOF, stable Docker volumes, loopback-only debug ports, and provider-aware OpenAI/OpenRouter routing.',
+  },
+];
 
 const codeLines = [
   'def optimized_step(self, closure=None):',
@@ -233,6 +253,29 @@ function App() {
             <p className="body-copy">Indiana University Bloomington</p>
           </section>
         </div>
+
+        <section className="card noteboard-card" id="noteboard" aria-labelledby="noteboard-title">
+          <div className="section-heading compact">
+            <span className="section-icon">
+              <Workflow size={15} strokeWidth={2} />
+            </span>
+            <p className="eyebrow">Product Build</p>
+          </div>
+          <h2 id="noteboard-title">Noteboard.ai</h2>
+          <p className="body-copy">
+            AI-native project workspace for converting product discovery into
+            architecture, tickets, agent-assisted implementation, and traceable
+            activity.
+          </p>
+          <dl className="star-list" aria-label="Noteboard project STAR writeup">
+            {noteboardHighlights.map((item) => (
+              <div className="star-item" key={item.label}>
+                <dt>{item.label}</dt>
+                <dd>{item.text}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
 
         <section className="card stack-card" id="stack" aria-labelledby="stack-title">
           <div className="section-heading compact">

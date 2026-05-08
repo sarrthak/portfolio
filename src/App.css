@@ -423,6 +423,15 @@ button {
   margin-bottom: 18px;
 }
 
+.noteboard-card .section-heading.compact {
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.noteboard-card .eyebrow {
+  margin: 0;
+}
+
 .section-icon,
 .accent-icon,
 .soft-icon {
@@ -578,6 +587,36 @@ button {
 
 .resume-card .body-copy {
   margin-bottom: 18px;
+}
+
+.star-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.star-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--surface-raised) 72%, transparent);
+}
+
+.star-item dt {
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.star-item dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .resume-actions {
@@ -793,9 +832,14 @@ button {
   }
 
   .stack-card,
+  .noteboard-card,
   .resume-card,
   .publication-card {
     min-height: 180px;
+  }
+
+  .noteboard-card {
+    grid-column: 1 / -1;
   }
 
   .publication-card {
@@ -881,9 +925,34 @@ button {
   }
 
   .stack-card,
+  .noteboard-card,
   .resume-card,
   .publication-card {
     padding: 28px;
+  }
+
+  .noteboard-card .body-copy {
+    max-width: 920px;
+  }
+
+  .star-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .star-item {
+    align-content: start;
+    min-height: 176px;
+    padding: 16px;
+  }
+
+  .star-item dt {
+    font-size: 12px;
+  }
+
+  .star-item dd {
+    font-size: 13px;
   }
 
   .chip-row {
