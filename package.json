@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/commit-mono": "^5.2.5",
     "@vitejs/plugin-react": "^5.1.2",
     "lucide-react": "^0.561.0",
     "react": "^19.2.3",
