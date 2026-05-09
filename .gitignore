@@ -18,9 +18,12 @@ pnpm-debug.log*
 .env
 .env.*
 !.env.example
+gha-creds-*.json
 
 # OS/editor
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
+.github/design
+CommitMonoV143
