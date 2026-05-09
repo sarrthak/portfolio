@@ -25,6 +25,9 @@ gha-creds-*.json
 Thumbs.db
 .vscode/
 .idea/
+.vercel/
 .github/design
 CommitMonoV143
 /favicon/
+
+.vercel
