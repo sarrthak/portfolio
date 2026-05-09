@@ -80,7 +80,7 @@ async function serveStatic(request, response) {
 const server = createServer(async (request, response) => {
   const url = new URL(request.url ?? '/', `http://${request.headers.host}`);
 
-  if (url.pathname === '/healthz') {
+  if (url.pathname === '/_healthz' || url.pathname === '/healthz/') {
     sendJson(response, 200, { ok: true });
     return;
   }

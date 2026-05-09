@@ -80,7 +80,7 @@ The production server listens on `PORT` or `8080` by default and serves:
 
 - `dist/` static assets
 - `/api/github-activity`
-- `/healthz`
+- `/_healthz`
 
 ## GitHub Activity Token
 
