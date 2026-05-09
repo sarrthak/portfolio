@@ -2,7 +2,7 @@
 
 This repository contains Sarrthak Tripathi's recruiter-focused portfolio site. It is a Vite + React + TypeScript application with a live Three.js Transformer hero, featured AI projects, professional STAR-method experience, live GitHub activity, resume download, and a contact section.
 
-The site is designed to do more than look polished. It is structured so hiring teams can quickly understand:
+The site is designed so hiring teams can quickly understand:
 
 - what Sarrthak has built,
 - which technical decisions mattered,
@@ -14,11 +14,11 @@ The site is designed to do more than look polished. It is structured so hiring t
 
 - **Live Transformer hero:** a Three.js text-token Transformer visualization that computes toy attention in the browser, updates softmax weights, and shows a decoder-style next-word prediction.
 - **Featured projects:** Noteboard.ai and News-Tracking-Cloudfare are presented as recruiter-readable case studies with architecture notes and stack purpose.
-- **Live GitHub activity:** `/api/github-activity` reads authenticated GitHub contribution data through a server-side token, keeping private contribution access out of the browser.
+- **Live GitHub activity:** `/api/github-activity` reads authenticated GitHub contribution data through a Vercel serverless function, keeping private contribution access out of the browser.
 - **Professional timeline:** work experience is written in STAR format using the resume and Optum proof-of-work document.
 - **Tech stack table:** grouped by Languages, AI/ML, Frontend, Backend, and DevOps.
 - **Contact form:** opens the user's mail client with fields for name, email, subject, and message.
-- **Cloud Run ready:** includes a production Node server, Dockerfile, and GitHub Actions deployment workflow.
+- **Vercel deployment:** the project is connected to Vercel for production deploys from GitHub.
 
 ## Stack
 
@@ -26,9 +26,9 @@ The site is designed to do more than look polished. It is structured so hiring t
 | --- | --- |
 | Frontend | React, Vite, TypeScript, Commit Mono, Lucide Icons |
 | 3D / Motion | Three.js |
+| Serverless API | Vercel Functions |
 | AI Portfolio Content | LangGraph, Neo4j, Redis, Gemma 4, Next.js, Cloudflare Workers, Vectorize |
-| Server | Node HTTP server for static assets and GitHub activity API |
-| Deployment | Docker, Google Cloud Run, Artifact Registry, GitHub Actions |
+| Deployment | Vercel, GitHub |
 
 ## Local Development
 
@@ -70,21 +70,15 @@ Build the static app:
 npm run build
 ```
 
-Run the production server locally:
+Preview the built app locally:
 
 ```bash
-npm start
+npm run preview
 ```
-
-The production server listens on `PORT` or `8080` by default and serves:
-
-- `dist/` static assets
-- `/api/github-activity`
-- `/_healthz`
 
 ## GitHub Activity Token
 
-The browser never receives the GitHub PAT. The token is read only by the server-side endpoint.
+The browser never receives the GitHub PAT. The token is read only by the serverless endpoint in `api/github-activity.js`.
 
 Required environment variable:
 
@@ -92,77 +86,50 @@ Required environment variable:
 GITHUB_ACTIVITY_TOKEN=...
 ```
 
-For Cloud Run, store this token in Secret Manager as:
+In Vercel, configure this variable for Production:
 
 ```text
-github-activity-token
+GITHUB_ACTIVITY_TOKEN
 ```
 
-The deployment workflow maps it into Cloud Run as:
+## Vercel Deployment
+
+The project is linked to Vercel as:
 
 ```text
-GITHUB_ACTIVITY_TOKEN=github-activity-token:latest
+sarrthaks-projects/portfolio
 ```
 
-## Cloud Run Deployment
+Important deployment files:
 
-The repository includes:
+- `vercel.json`
+- `api/github-activity.js`
+- `package.json`
 
-- `Dockerfile`
-- `server.mjs`
-- `.github/workflows/deploy-cloud-run.yml`
+Vercel uses:
 
-The workflow builds a Docker image, pushes it to Artifact Registry, and deploys it to Cloud Run.
+- build command: `npm run build`
+- output directory: `dist`
+- framework: `vite`
 
-### Required GitHub Secrets
+## Custom Domain
 
-Configure these in the GitHub repository:
+The Vercel project has these domains attached:
 
-| Secret | Purpose |
-| --- | --- |
-| `GCP_PROJECT_ID` | Google Cloud project ID |
-| `GCP_WORKLOAD_IDENTITY_PROVIDER` | Workload Identity Federation provider |
-| `GCP_SERVICE_ACCOUNT` | Deploy service account email |
-
-### Required Google Cloud Resources
-
-Create these before the first deployment:
-
-```bash
-gcloud artifacts repositories create portfolio \
-  --repository-format=docker \
-  --location=us-central1
-
-gcloud secrets create github-activity-token \
-  --replication-policy=automatic
-
-printf "YOUR_GITHUB_PAT" | gcloud secrets versions add github-activity-token \
-  --data-file=-
+```text
+sarrthak.tech
+www.sarrthak.tech
 ```
 
-The service account used by GitHub Actions needs permissions to:
+Set DNS records at the domain provider:
 
-- push images to Artifact Registry,
-- deploy Cloud Run services,
-- read the `github-activity-token` secret,
-- and act as the Cloud Run runtime service account.
-
-## Versioning
-
-The workflow deploys on:
-
-- pushes to `main`,
-- manual `workflow_dispatch`,
-- semantic version tags like `v1.0.0`.
-
-Recommended release flow:
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
+```text
+Type   Host   Value
+A      @      76.76.21.21
+A      www    76.76.21.21
 ```
 
-Tagged releases produce versioned container images using the tag name. Untagged `main` deployments use a short SHA tag such as `sha-abc1234`.
+After DNS propagation, Vercel verifies the domain and issues SSL automatically.
 
 ## Important Files
 
@@ -171,10 +138,10 @@ Tagged releases produce versioned container images using the tag name. Untagged 
 | `src/App.tsx` | Main portfolio content and layout |
 | `src/TransformerHero.tsx` | Live Three.js Transformer attention demo |
 | `src/App.css` | Responsive design system and section styling |
-| `api/github-activity.js` | GitHub GraphQL activity fetcher |
-| `server.mjs` | Cloud Run production server |
+| `api/github-activity.js` | GitHub GraphQL activity fetcher for Vercel Functions |
 | `public/Sarrthak_Tripathi_Resume.pdf` | Downloadable resume |
-| `.github/workflows/deploy-cloud-run.yml` | Cloud Run CI/CD workflow |
+| `public/favicon/` | Browser and PWA favicon assets |
+| `vercel.json` | Vercel build configuration |
 
 ## License
 
