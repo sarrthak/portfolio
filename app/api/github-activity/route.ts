@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server';
+
 const GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
 const GITHUB_USERNAME = 'sarrthak';
 
@@ -48,7 +50,21 @@ function startOfYear() {
   return new Date(Date.UTC(now.getUTCFullYear(), 0, 1)).toISOString();
 }
 
-function flattenCalendar(weeks) {
+type ContributionDay = {
+  date: string;
+  count: number;
+  level: string;
+};
+
+type CalendarWeek = {
+  contributionDays: {
+    date: string;
+    contributionCount: number;
+    contributionLevel: string;
+  }[];
+};
+
+function flattenCalendar(weeks: CalendarWeek[]): ContributionDay[] {
   return weeks
     .flatMap((week) => week.contributionDays)
     .map((day) => ({
@@ -58,7 +74,7 @@ function flattenCalendar(weeks) {
     }));
 }
 
-function summarizeRecentDays(days) {
+function summarizeRecentDays(days: ContributionDay[]) {
   const recent = days.slice(-28);
   const bucketSize = 4;
 
@@ -68,20 +84,20 @@ function summarizeRecentDays(days) {
   });
 }
 
-function formatCompactNumber(value) {
+function formatCompactNumber(value: number) {
   return new Intl.NumberFormat('en-US', {
     notation: value >= 1000 ? 'compact' : 'standard',
     maximumFractionDigits: 1,
   }).format(value);
 }
 
-export async function getGitHubActivity() {
+async function getGitHubActivity() {
   const token = process.env.GITHUB_ACTIVITY_TOKEN;
 
   if (!token) {
-    const error = new Error('GitHub activity token is not configured.');
-    error.statusCode = 503;
-    throw error;
+    throw Object.assign(new Error('GitHub activity token is not configured.'), {
+      statusCode: 503,
+    });
   }
 
   const to = new Date().toISOString();
@@ -104,38 +120,40 @@ export async function getGitHubActivity() {
   });
 
   if (!githubResponse.ok) {
-    const error = new Error('GitHub API request failed.');
-    error.statusCode = githubResponse.status;
-    throw error;
+    throw Object.assign(new Error('GitHub API request failed.'), {
+      statusCode: githubResponse.status,
+    });
   }
 
   const payload = await githubResponse.json();
 
   if (payload.errors?.length) {
-    const error = new Error('GitHub GraphQL returned an error.');
-    error.statusCode = 502;
-    throw error;
+    throw Object.assign(new Error('GitHub GraphQL returned an error.'), {
+      statusCode: 502,
+    });
   }
 
   const user = payload.data?.user;
 
   if (!user) {
-    const error = new Error('GitHub user not found.');
-    error.statusCode = 404;
-    throw error;
+    throw Object.assign(new Error('GitHub user not found.'), {
+      statusCode: 404,
+    });
   }
 
   const contributions = user.contributionsCollection;
   const days = flattenCalendar(contributions.contributionCalendar.weeks);
   const totalContributions = contributions.contributionCalendar.totalContributions;
   const publicRepos = user.repositories.totalCount;
-  const recentRepos = user.repositories.nodes.slice(0, 3).map((repo) => ({
-    name: repo.name,
-    url: repo.url,
-    updatedAt: repo.updatedAt,
-    stars: repo.stargazerCount,
-    language: repo.primaryLanguage?.name ?? 'Code',
-  }));
+  const recentRepos = user.repositories.nodes
+    .slice(0, 3)
+    .map((repo: { name: string; url: string; updatedAt: string; stargazerCount: number; primaryLanguage: { name: string } | null }) => ({
+      name: repo.name,
+      url: repo.url,
+      updatedAt: repo.updatedAt,
+      stars: repo.stargazerCount,
+      language: repo.primaryLanguage?.name ?? 'Code',
+    }));
 
   return {
     updatedAt: to,
@@ -167,24 +185,22 @@ export async function getGitHubActivity() {
   };
 }
 
-export default async function handler(request, response) {
-  if (request.method !== 'GET') {
-    response.setHeader('Allow', 'GET');
-    return response.status(405).json({ error: 'Method not allowed' });
-  }
-
+export async function GET() {
   try {
     const activity = await getGitHubActivity();
 
-    response.setHeader(
-      'Cache-Control',
-      'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400',
-    );
-
-    return response.status(200).json(activity);
-  } catch (error) {
-    return response.status(error.statusCode ?? 500).json({
-      error: error.message ?? 'GitHub activity is unavailable.',
+    return NextResponse.json(activity, {
+      headers: {
+        'Cache-Control':
+          'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400',
+      },
     });
+  } catch (error: unknown) {
+    const err = error as Error & { statusCode?: number };
+
+    return NextResponse.json(
+      { error: err.message ?? 'GitHub activity is unavailable.' },
+      { status: err.statusCode ?? 500 },
+    );
   }
 }
