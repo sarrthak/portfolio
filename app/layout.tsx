@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import '@fontsource/commit-mono/400.css';
 import '@fontsource/commit-mono/500.css';
 import '@fontsource/commit-mono/600.css';
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
+        <Analytics />
       </body>
     </html>
   );
