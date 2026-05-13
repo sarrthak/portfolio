@@ -10,7 +10,7 @@ const techWords = [
 ];
 
 const NODE_COUNT = 6;
-const PULSE_SPEED = 0.012;
+const PULSE_SPEED = 0.006;
 const CYCLE_PAUSE = 60; // frames to pause after word reveal
 
 export function RNNVisualizer() {
