@@ -1530,6 +1530,279 @@ button {
   }
 }
 
+/* ── RNN Visualizer ── */
+
+.rnn-panel {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  color: #bdefff;
+  border: 1px solid color-mix(in srgb, var(--primary) 42%, var(--line));
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(5, 20, 28, 0.94), rgba(2, 10, 16, 0.98)),
+    #061018;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+  margin: 20px 10px 0;
+}
+
+.rnn-panel::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 76%);
+}
+
+.rnn-stage {
+  position: absolute;
+  inset: 0;
+}
+
+.rnn-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rnn-overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+  padding: 12px;
+  pointer-events: none;
+}
+
+.rnn-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: rgba(221, 247, 255, 0.74);
+  font-size: 9px;
+}
+
+.rnn-topline strong {
+  color: #7bdb80;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.rnn-output {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rnn-hidden-labels {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  color: rgba(93, 244, 214, 0.6);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.rnn-hidden-labels sub {
+  font-size: 7px;
+}
+
+.rnn-word {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 193, 90, 0.3);
+  border-radius: 8px;
+  background: rgba(2, 10, 16, 0.7);
+  backdrop-filter: blur(8px);
+  transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.rnn-word.revealed {
+  border-color: rgba(255, 193, 90, 0.7);
+  box-shadow: 0 0 18px rgba(255, 193, 90, 0.25);
+}
+
+.rnn-word-label {
+  color: rgba(221, 247, 255, 0.5);
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.rnn-word-value {
+  color: #ffc15a;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+/* Waiting state: underscores blink */
+.rnn-word:not(.revealed) .rnn-word-value {
+  color: rgba(255, 193, 90, 0.45);
+  animation: underscorePulse 1.2s ease-in-out infinite;
+}
+
+@keyframes underscorePulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+.rnn-word.revealed .rnn-word-value {
+  animation: wordPop 300ms ease forwards;
+}
+
+@keyframes wordPop {
+  0% {
+    opacity: 0.3;
+    transform: translateY(4px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Mode Toggle (fixed bottom pill) ── */
+
+.mode-pill {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(18, 18, 22, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.mode-pill button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: "Commit Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 200ms ease, background 200ms ease;
+}
+
+.mode-pill button:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mode-pill button.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mode-radio {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.mode-radio::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 200ms ease;
+}
+
+button.active .mode-radio::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ── Machine View ── */
+
+.machine-view {
+  margin: 20px 10px 0;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-code);
+  min-height: 60vh;
+}
+
+.machine-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.machine-badge {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+  padding: 0 10px;
+  color: #ffc15a;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(255, 193, 90, 0.4);
+  border-radius: 999px;
+  background: rgba(255, 193, 90, 0.08);
+}
+
+.machine-meta {
+  color: var(--soft);
+  font-size: 10px;
+}
+
+.machine-content {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-family: "Commit Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+
 @media (min-width: 360px) {
   .topbar {
     padding-inline: 16px;
@@ -1802,6 +2075,41 @@ button {
   .side-column .card {
     width: 100%;
     margin: 0;
+  }
+
+  .rnn-panel {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: 0;
+    min-height: 320px;
+  }
+
+  .rnn-overlay {
+    min-height: 320px;
+    padding: 18px;
+  }
+
+  .rnn-topline {
+    font-size: 12px;
+  }
+
+  .rnn-topline strong {
+    font-size: 12px;
+  }
+
+  .rnn-hidden-labels {
+    gap: 50px;
+    font-size: 11px;
+  }
+
+  .rnn-word {
+    max-width: 400px;
+    margin: 0 auto;
+    min-height: 44px;
+  }
+
+  .rnn-word-value {
+    font-size: 20px;
   }
 
   .project-card,
@@ -2172,7 +2480,7 @@ button {
 
   .contact-submit {
     width: min(260px, 100%);
-    justify-self: end;
+    justify-self: center;
   }
 
   .publication-meta {

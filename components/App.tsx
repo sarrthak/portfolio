@@ -1,8 +1,9 @@
+'use client';
+
 import { useEffect, useMemo, useState } from 'react';
 import {
   ArrowDown,
   Box,
-  Code2,
   Database,
   Download,
   Eye,
@@ -15,20 +16,14 @@ import {
   Moon,
   Network,
   Send,
-  SquareTerminal,
   Sun,
   Trophy,
   Workflow,
 } from 'lucide-react';
 import { TransformerHero } from './TransformerHero';
-
-type TechStackGroup = {
-  category: string;
-  items: {
-    label: string;
-    tone: 'blue' | 'cyan' | 'green' | 'orange' | 'purple' | 'red';
-  }[];
-};
+import { RNNVisualizer } from './RNNVisualizer';
+import { MachineView } from './MachineView';
+import type { ProjectCard, TimelineItem, EducationItem, TechStackGroup } from './portfolioData';
 
 const stats = [
   { label: 'Contributions (YTD)', value: '1.2K' },
@@ -59,85 +54,6 @@ type GitHubActivity = {
     language: string;
   }[];
 };
-
-const techStack: TechStackGroup[] = [
-  {
-    category: 'Languages',
-    items: [
-      { label: 'Python', tone: 'blue' },
-      { label: 'TypeScript', tone: 'blue' },
-      { label: 'SQL', tone: 'cyan' },
-      { label: 'R', tone: 'blue' },
-    ],
-  },
-  {
-    category: 'AI / ML',
-    items: [
-      { label: 'PyTorch', tone: 'red' },
-      { label: 'TensorFlow', tone: 'orange' },
-      { label: 'LangGraph', tone: 'purple' },
-      { label: 'OpenAI', tone: 'purple' },
-      { label: 'Computer Vision', tone: 'orange' },
-    ],
-  },
-  {
-    category: 'Frontend',
-    items: [
-      { label: 'Next.js', tone: 'green' },
-      { label: 'React', tone: 'cyan' },
-      { label: 'Tailwind CSS', tone: 'cyan' },
-      { label: 'AEM', tone: 'purple' },
-    ],
-  },
-  {
-    category: 'Backend',
-    items: [
-      { label: 'FastAPI', tone: 'green' },
-      { label: 'Spring Boot', tone: 'green' },
-      { label: 'PostgreSQL', tone: 'blue' },
-      { label: 'Redis', tone: 'red' },
-      { label: 'Neo4j', tone: 'blue' },
-      { label: 'Kafka', tone: 'orange' },
-    ],
-  },
-  {
-    category: 'DevOps',
-    items: [
-      { label: 'Docker', tone: 'blue' },
-      { label: 'Kubernetes', tone: 'cyan' },
-      { label: 'GitHub Actions', tone: 'blue' },
-      { label: 'Cloudflare', tone: 'orange' },
-      { label: 'Vercel', tone: 'green' },
-    ],
-  },
-];
-
-const educationItems = [
-  {
-    school: 'Indiana University Bloomington',
-    degree: 'M.S. Data Science',
-    dates: '2025 - 2027',
-    subjects: [
-      'Applied Machine Learning',
-      'Applied Database Technologies',
-      'Computer Vision',
-    ],
-  },
-  {
-    school: 'Vellore Institute of Technology',
-    degree: 'B.Tech Computer Science',
-    dates: '2019 - 2023',
-    cgpa: 'CGPA 3.8/4',
-    subjects: [
-      'Data Mining',
-      'Neural Networks',
-      'Machine Learning',
-      'Cloud Computing',
-      'Git',
-      'Artificial Intelligence',
-    ],
-  },
-];
 
 const resumeUrl = '/Sarrthak_Tripathi_Resume.pdf';
 const footerLinks = [
@@ -170,7 +86,6 @@ const navLinks = [
   { label: 'Resume', href: '#resume' },
   { label: 'Contact', href: '#contact' },
 ];
-const newsTrackingUrl = 'https://github.com/sarrthak/News-Tracking-Cloudfare';
 
 const luddyHackathonUrl =
   'https://www.linkedin.com/feed/update/urn:li:activity:7452144862788853760/';
@@ -204,107 +119,18 @@ const achievementChips = [
   'MVVM Architecture',
 ];
 
-const projectCards = [
-  {
-    title: 'Noteboard.ai',
-    badge: 'Cheng Wu Challenge Finalist Project',
-    href: 'https://github.com/sarrthak',
-    summary:
-      'AI-native project workspace that turns product discovery into architecture, tickets, agent-assisted implementation, and traceable engineering activity.',
-    outcomes: [
-      'Voice-to-ticket capture for product huddles',
-      'Auto-generated HLDs with Mermaid/canvas architecture views',
-      'Planner/drafter/verifier agent loop with checkpoint approvals',
-      "Finalist at IUB's flagship Cheng Wu Challenge 2026",
-    ],
-    stack: [
-      {
-        label: 'LangGraph',
-        text: 'orchestrates planner, drafter, verifier, and approval-state agent workflows.',
-      },
-      {
-        label: 'Neo4j',
-        text: 'stores project dependency graphs so service relationships and architecture decisions stay queryable.',
-      },
-      {
-        label: 'Redis',
-        text: 'powers queues, session checkpoints, durable approvals, and real-time workflow state.',
-      },
-      {
-        label: 'Gemma 4',
-        text: 'supports dynamic prompting for context-aware reasoning across tickets, designs, and dev tasks.',
-      },
-      {
-        label: 'Next.js',
-        text: 'ships the product UI for huddles, architecture review, and developer mission control.',
-      },
-    ],
-  },
-  {
-    title: 'News-Tracking-Cloudfare',
-    badge: 'Fake News / News Intelligence Platform',
-    href: newsTrackingUrl,
-    summary:
-      'Cloud-native news tracking system built for the modern fake-news problem: finding related coverage, grounding claims, and helping readers inspect credibility and neutrality.',
-    outcomes: [
-      'Tracks news context instead of treating articles as isolated posts',
-      'Uses embeddings and semantic retrieval to connect related coverage',
-      'Supports neutrality-aware ranking and citation-grounded topic histories',
-      'Built to make misinformation analysis measurable for readers and reviewers',
-    ],
-    stack: [
-      {
-        label: 'Next.js',
-        text: 'delivers a fast, recruiter-demoable interface for search, topics, and article review.',
-      },
-      {
-        label: 'Cloudflare Workers',
-        text: 'runs edge logic close to users for low-latency news retrieval and ranking.',
-      },
-      {
-        label: 'D1',
-        text: 'stores article metadata, labels, and evaluation artifacts in a serverless SQL layer.',
-      },
-      {
-        label: 'Vectorize',
-        text: 'indexes article embeddings for semantic search across a large news corpus.',
-      },
-      {
-        label: 'RAG',
-        text: 'builds citation-backed topic summaries and timelines instead of unsupported summaries.',
-      },
-    ],
-  },
-];
+// Icon lookup: Sanity stores icon names as strings, this maps them to Lucide components
+const iconMap: Record<string, typeof Network> = {
+  Network,
+  Database,
+};
 
-const timelineItems = [
-  {
-    icon: Network,
-    period: 'Jan 2022 - 2025',
-    title: 'Sr. Software Engineer',
-    org: 'Optum Global Solutions',
-    href: undefined,
-    star: [
-      'Situation: Healthcare member platforms needed faster, more reliable product experiences across frontend, backend, claims data, and deployment surfaces.',
-      'Task: Modernize legacy AEM experiences, improve service response paths, support Kubernetes migration, and turn member experience data into actionable leadership insight.',
-      'Action: Migrated key widgets to React and Next.js, built Spring Boot services for login/member APIs, helped configure Kafka claims topics, contributed Kubernetes service/proxy files, built KPI dashboards, modeled pain points with Python/Keras/Scikit-Learn, and prototyped LLM features for patient claim forms.',
-      'Result: Expanded from frontend delivery into full-stack, platform, ML, and LLM production work while supporting high-volume healthcare workflows and sub-50ms response-time goals.',
-    ],
-  },
-  {
-    icon: Database,
-    period: 'Aug 2025 - Present',
-    title: 'Data Scientist',
-    org: 'Indiana University Bloomington',
-    href: undefined,
-    star: [
-      'Situation: Complex Olympic diving records required faster search, review, and classification across large-scale text and video data.',
-      'Task: Build multimodal retrieval and model-training systems that could support natural language querying, domain classification, and automated scoring.',
-      'Action: Engineered a Hadoop-backed RAG pipeline with vector embeddings and GLM-4.5 synthesis, fine-tuned LLaMA with LoRA on 10,000 records, and adapted VideoMAE V2 spatio-temporal attention layers for dive biomechanics across historical videos.',
-      'Result: Improved retrieval accuracy by 40%, reduced manual review by 15 hours per week, increased few-shot prediction accuracy by 60%, and mapped multi-frame videos to an automated grading metric.',
-    ],
-  },
-];
+type AppProps = {
+  projects: ProjectCard[];
+  experiences: TimelineItem[];
+  education: EducationItem[];
+  techStack: TechStackGroup[];
+};
 
 type Theme = 'light' | 'dark';
 type ActivityState =
@@ -315,13 +141,9 @@ type ActivityState =
 const githubActivityCacheKey = 'portfolio-github-activity';
 
 function getInitialTheme(): Theme {
-  const storedTheme = window.localStorage.getItem('portfolio-theme');
-
-  if (storedTheme === 'light' || storedTheme === 'dark') {
-    return storedTheme;
-  }
-
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  // Always return 'light' for SSR + initial client render to avoid hydration mismatch.
+  // The real theme is synced from localStorage in useEffect.
+  return 'light';
 }
 
 function buildActivityPath(points = [4, 8, 5, 16, 13, 23, 28]) {
@@ -343,25 +165,14 @@ function buildActivityPath(points = [4, 8, 5, 16, 13, 23, 28]) {
     .join(' ');
 }
 
-function App() {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+function App({ projects, experiences, education, techStack }: AppProps) {
+  const [theme, setTheme] = useState<Theme>('light');
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activity, setActivity] = useState<ActivityState>(() => {
-    const cachedActivity = window.localStorage.getItem(githubActivityCacheKey);
-
-    if (!cachedActivity) {
-      return { status: 'loading', data: null, error: null };
-    }
-
-    try {
-      return {
-        status: 'loading',
-        data: JSON.parse(cachedActivity) as GitHubActivity,
-        error: null,
-      };
-    } catch {
-      return { status: 'loading', data: null, error: null };
-    }
+  const [machineMode, setMachineMode] = useState(false);
+  const [activity, setActivity] = useState<ActivityState>({
+    status: 'loading',
+    data: null,
+    error: null,
   });
   const isDark = theme === 'dark';
   const activityStats = activity.data?.stats ?? stats;
@@ -377,6 +188,29 @@ function App() {
         minute: '2-digit',
       }).format(new Date(activity.data.updatedAt))
     : null;
+
+  // Sync theme from localStorage after mount (avoids hydration mismatch)
+  useEffect(() => {
+    const storedTheme = window.localStorage.getItem('portfolio-theme');
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+      setTheme(storedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    }
+  }, []);
+
+  // Hydrate cached activity from localStorage after mount
+  useEffect(() => {
+    const cached = window.localStorage.getItem(githubActivityCacheKey);
+    if (cached) {
+      try {
+        setActivity((prev) => ({
+          ...prev,
+          data: JSON.parse(cached) as GitHubActivity,
+        }));
+      } catch { /* ignore bad cache */ }
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -452,12 +286,6 @@ function App() {
           >
             {isDark ? <Sun size={18} strokeWidth={2} /> : <Moon size={18} strokeWidth={2} />}
           </button>
-          <button className="icon-button desktop-only" type="button" aria-label="Open terminal">
-            <SquareTerminal size={18} strokeWidth={2} />
-          </button>
-          <button className="icon-button desktop-only" type="button" aria-label="Open code view">
-            <Code2 size={18} strokeWidth={2} />
-          </button>
           <a className="resume-button" href="#resume">
             Resume
           </a>
@@ -494,6 +322,15 @@ function App() {
         </nav>
       </header>
 
+      {machineMode ? (
+        <MachineView
+          projects={projects}
+          experiences={experiences}
+          education={education}
+          techStack={techStack}
+        />
+      ) : (
+        <>
       <section className="hero-panel neural-hero" id="top" aria-labelledby="hero-title">
         <div className="hero-copy">
           <p className="availability-chip">Open for ML engineering roles</p>
@@ -533,7 +370,7 @@ function App() {
             measurable technical value instead of just listing tools.
           </p>
           <div className="featured-project-grid">
-            {projectCards.map((project) => (
+            {projects.map((project) => (
               <article className="featured-project" key={project.title}>
                 <div className="project-header">
                   <span className="project-badge">{project.badge}</span>
@@ -574,6 +411,8 @@ function App() {
             ))}
           </div>
         </section>
+
+        <RNNVisualizer />
 
         <div className="side-column">
           <section className="card activity-card" id="activity" aria-labelledby="activity-title">
@@ -665,7 +504,7 @@ function App() {
               <span className="year-chip">Education</span>
             </div>
             <div className="education-list">
-              {educationItems.map((item, index) => (
+              {education.map((item, index) => (
                 <article className="education-entry" key={item.school}>
                   <div className="education-heading">
                     <h2 id={index === 0 ? 'education-title' : undefined}>{item.degree}</h2>
@@ -749,34 +588,36 @@ function App() {
           </div>
           <h2 id="timeline-title">Professional experience</h2>
           <div className="timeline-list">
-            {timelineItems.map(({ href, icon: Icon, org, period, star, title }, index) => (
-              <article className="timeline-item" key={title}>
-                <div className="timeline-marker" aria-hidden="true">
-                  <Icon size={18} strokeWidth={2} />
-                </div>
-                <div className="timeline-content">
-                  <span className="timeline-step">Step {index + 1}</span>
-                  <div className="timeline-heading">
-                    <div>
-                      <h3>{title}</h3>
-                      <p>{org}</p>
-                    </div>
-                    <span className="year-chip">{period}</span>
+            {experiences.map((exp, index) => {
+              const Icon = iconMap[exp.icon ?? ''] ?? Network;
+              return (
+                <article className="timeline-item" key={exp.title}>
+                  <div className="timeline-marker" aria-hidden="true">
+                    <Icon size={18} strokeWidth={2} />
                   </div>
-                  <ul className="timeline-star">
-                    {star.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                  {href ? (
-                    <a className="text-action timeline-link" href={href} target="_blank" rel="noreferrer">
-                      View Project
-                      <ExternalLink size={15} strokeWidth={1.9} />
-                    </a>
-                  ) : null}
-                </div>
-              </article>
-            ))}
+                  <div className="timeline-content">
+                    <div className="timeline-heading">
+                      <div>
+                        <h3>{exp.title}</h3>
+                        <p>{exp.org}</p>
+                      </div>
+                      <span className="year-chip">{exp.period}</span>
+                    </div>
+                    <ul className="timeline-star">
+                      {exp.star.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                    {exp.href ? (
+                      <a className="text-action timeline-link" href={exp.href} target="_blank" rel="noreferrer">
+                        View Project
+                        <ExternalLink size={15} strokeWidth={1.9} />
+                      </a>
+                    ) : null}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
 
@@ -793,7 +634,7 @@ function App() {
                 <h3>{group.category}</h3>
                 <div>
                   {group.items.map((item) => (
-                    <span className={`tech-badge ${item.tone}`} key={item.label}>
+                    <span className={`tech-badge ${item.tone ?? 'blue'}`} key={item.label}>
                       {item.label}
                     </span>
                   ))}
@@ -883,6 +724,31 @@ function App() {
           ))}
         </nav>
       </footer>
+        </>
+      )}
+
+      <div className="mode-pill" role="radiogroup" aria-label="View mode">
+        <button
+          type="button"
+          className={machineMode ? '' : 'active'}
+          role="radio"
+          aria-checked={!machineMode}
+          onClick={() => setMachineMode(false)}
+        >
+          <span className="mode-radio" aria-hidden="true" />
+          Human
+        </button>
+        <button
+          type="button"
+          className={machineMode ? 'active' : ''}
+          role="radio"
+          aria-checked={machineMode}
+          onClick={() => setMachineMode(true)}
+        >
+          <span className="mode-radio" aria-hidden="true" />
+          Machine
+        </button>
+      </div>
     </main>
   );
 }
