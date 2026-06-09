@@ -31,3 +31,5 @@ CommitMonoV143
 /favicon/
 
 .vercel
+*.md
+/Resumes

@@ -41,7 +41,7 @@ export const projectCards: ProjectCard[] = [
     badge: 'Cheng Wu Challenge Finalist Project',
     href: 'https://github.com/sarrthak',
     summary:
-      'AI-native project workspace that turns product discovery into architecture, tickets, agent-assisted implementation, and traceable engineering activity.',
+      'AI coding harness that helps teams craft stronger prompts, turn product context into implementation plans, and write better code through agent-assisted workflows.',
     outcomes: [
       'Voice-to-ticket capture for product huddles',
       'Auto-generated HLDs with Mermaid/canvas architecture views',
@@ -63,7 +63,7 @@ export const projectCards: ProjectCard[] = [
       },
       {
         label: 'Gemma 4',
-        text: 'supports dynamic prompting for context-aware reasoning across tickets, designs, and dev tasks.',
+        text: 'powers prompt refinement and context-aware code generation across tickets, designs, and dev tasks.',
       },
       {
         label: 'Next.js',

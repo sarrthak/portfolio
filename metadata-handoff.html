@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sarrthak Tripathi - Metadata Handoff</title>
+  <meta name="description" content="Rich candidate metadata handoff for Sarrthak Tripathi, compiled from local resumes, portfolio repository files, and public GitHub repository metadata.">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #fbfaf7;
+      --ink: #18202a;
+      --muted: #66717f;
+      --line: #d8d2c4;
+      --panel: #ffffff;
+      --panel-soft: #f0eee7;
+      --accent: #0b6b57;
+      --accent-2: #b9462f;
+      --accent-3: #215c9d;
+      --amber: #9b6a00;
+      --shadow: 0 18px 45px rgba(24, 32, 42, 0.1);
+      font-family: ui-sans-serif, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(24, 32, 42, 0.045) 1px, transparent 1px) 0 0 / 32px 32px,
+        linear-gradient(rgba(24, 32, 42, 0.035) 1px, transparent 1px) 0 0 / 32px 32px,
+        var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--accent-3);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+      gap: 24px;
+      align-items: stretch;
+      min-height: 430px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 44px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 18px;
+      padding: 7px 10px;
+      border: 1px solid rgba(11, 107, 87, 0.22);
+      background: rgba(11, 107, 87, 0.08);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 850px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 6vw, 76px);
+      font-weight: 700;
+    }
+
+    .hero-subtitle {
+      max-width: 780px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .contact-grid a,
+    .contact-grid span {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--ink);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .hero-aside {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px;
+      background: #17202b;
+      color: #f7f4ed;
+    }
+
+    .hero-aside .label {
+      color: #aeb8c6;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .big-stat {
+      margin-top: 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 62px;
+      line-height: 0.95;
+    }
+
+    .stat-caption {
+      margin: 10px 0 0;
+      color: #cfd6df;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .pill {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      padding: 5px 9px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: inherit;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 24px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: 0 8px 24px rgba(24, 32, 42, 0.05);
+    }
+
+    .section-header {
+      display: flex;
+      gap: 16px;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-header h2 {
+      font-size: 28px;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .section-header p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: #fffdf8;
+      padding: 18px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .meta-list,
+    .project-list,
+    .source-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .meta-list li,
+    .source-list li {
+      padding: 12px;
+      border-left: 3px solid var(--accent);
+      background: var(--panel-soft);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 18px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: 0;
+    }
+
+    .date {
+      color: var(--accent-2);
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .role {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .role h3 {
+      font-size: 20px;
+    }
+
+    .role span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .bullets {
+      margin: 10px 0 0;
+      padding-left: 20px;
+    }
+
+    .bullets li {
+      margin: 6px 0;
+    }
+
+    .project-card {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: #fffdf8;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .project-top h3 {
+      font-size: 21px;
+    }
+
+    .tag,
+    .confidence {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border: 1px solid rgba(24, 32, 42, 0.12);
+      background: #f3efe4;
+      color: #3b4652;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .confidence.high {
+      background: rgba(11, 107, 87, 0.1);
+      color: var(--accent);
+    }
+
+    .confidence.medium {
+      background: rgba(155, 106, 0, 0.12);
+      color: var(--amber);
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .repo-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .repo-table th,
+    .repo-table td {
+      padding: 11px 9px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .repo-table th {
+      background: var(--panel-soft);
+      color: #3b4652;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .notice {
+      border: 1px solid rgba(185, 70, 47, 0.25);
+      background: rgba(185, 70, 47, 0.08);
+      padding: 14px;
+      color: #633024;
+    }
+
+    pre {
+      max-height: 460px;
+      overflow: auto;
+      padding: 16px;
+      border: 1px solid #c9c3b6;
+      background: #17202b;
+      color: #f7f4ed;
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .signature {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      margin-top: 24px;
+      padding: 20px;
+      border: 1px solid #17202b;
+      background: #17202b;
+      color: #f7f4ed;
+    }
+
+    .signature p {
+      margin: 4px 0 0;
+      color: #cfd6df;
+    }
+
+    .signature strong {
+      font-size: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .grid-2,
+      .grid-3,
+      .timeline-item,
+      .signature {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-aside,
+      .section {
+        padding: 22px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        display: block;
+      }
+
+      .section-header p {
+        margin-top: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-copy">
+        <p class="kicker">Candidate metadata handoff</p>
+        <h1 id="title">Sarrthak Tripathi</h1>
+        <p class="hero-subtitle">
+          Data science graduate student and software engineer building applied AI systems across
+          retrieval, computer vision, data pipelines, healthcare platforms, and developer workflow automation.
+          This file is designed for human review and downstream LLM ingestion.
+        </p>
+        <div class="contact-grid" aria-label="Contact and profile links">
+          <a href="mailto:sarrtrip@iu.edu">sarrtrip@iu.edu</a>
+          <span>+1 (609) 532-5955</span>
+          <a href="https://linkedin.com/in/tripsarrthak28">linkedin.com/in/tripsarrthak28</a>
+          <a href="https://github.com/sarrthak">github.com/sarrthak</a>
+          <a href="https://sarrthak.tech">sarrthak.tech</a>
+          <span>Bloomington, IN / NYC metro signal from public profile</span>
+        </div>
+      </div>
+      <aside class="hero-aside" aria-label="Compilation summary">
+        <div>
+          <span class="label">Scanned sources</span>
+          <div class="big-stat">20</div>
+          <p class="stat-caption">PDFs extracted from local resume folders, plus one LaTeX resume, portfolio source files, and public GitHub metadata.</p>
+        </div>
+        <div>
+          <span class="label">Public GitHub repos</span>
+          <div class="big-stat">21</div>
+          <p class="stat-caption">Fetched from GitHub REST API for user <strong>sarrthak</strong> on 2026-05-23.</p>
+          <div class="pill-row">
+            <span class="pill">ML engineering</span>
+            <span class="pill">Data science</span>
+            <span class="pill">Full-stack</span>
+            <span class="pill">RAG</span>
+            <span class="pill">Computer vision</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" aria-labelledby="summary-title">
+      <div class="section-header">
+        <h2 id="summary-title">Executive Summary</h2>
+        <p>Consolidated from resume variants, cover letters, portfolio fallback data, and public GitHub metadata.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Primary Positioning</h3>
+          <p>Machine learning engineer / data scientist with prior senior software engineering experience at Optum / UnitedHealth Group.</p>
+        </article>
+        <article class="card">
+          <h3>Current Focus</h3>
+          <p>MS Data Science at Indiana University Bloomington, applied AI work with IU Athletics, and project work in RAG, vector search, ranking, and agents.</p>
+        </article>
+        <article class="card">
+          <h3>Recruiter Signals</h3>
+          <p>1st place Luddy Hackathon, 2nd prize InnoQuest 2025, Bravo Diamond recognitions, production healthcare software, measurable ML metrics.</p>
+        </article>
+      </div>
+      <ul class="meta-list" style="margin-top: 16px;">
+        <li><strong>Availability note:</strong> TikTok-targeted resume lists a 12-week onsite Fall 2026 internship window with starts on Aug 10, Aug 24, Sep 8, or Sep 21.</li>
+        <li><strong>Highest-confidence role themes:</strong> ML engineering, LLM / RAG systems, data engineering, analytics engineering, computer vision, backend/full-stack product engineering.</li>
+        <li><strong>Source caveat:</strong> Some resume variants disagree on GPA and B.Tech dates. Treat the user-confirmed IUB GPA of 3.67/4 as canonical, and preserve older contradictory source claims only as provenance.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="experience-title">
+      <div class="section-header">
+        <h2 id="experience-title">Experience Timeline</h2>
+        <p>Combined across role-specific resumes. Metrics are retained where repeatedly present or central to the role narrative.</p>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="date">Aug 2025 - Present</div>
+          <div>
+            <div class="role">
+              <h3>Data Scientist</h3>
+              <span>Indiana University Bloomington / IU Athletics</span>
+            </div>
+            <ul class="bullets">
+              <li>Engineered multi-modal RAG for Olympic diving records using Hadoop-backed text/video embedding pipelines and GLM-4.5 synthesis; reported 40% better retrieval accuracy and 15 hours/week less manual review.</li>
+              <li>Fine-tuned LLaMA with LoRA on a 10,000-record dive classification dataset using PyTorch; reported 60% improvement in few-shot prediction accuracy and lower inference latency.</li>
+              <li>Adapted VideoMAE V2 spatio-temporal attention for 1,000 historical dive videos to map biomechanics to automated grading signals.</li>
+              <li>Other resume variants emphasize Divemeets ETL, Apache Spark, MapReduce, Flink, Tableau, ANOVA, and real-time athlete performance monitoring.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="date">Jan 2022 - Sep 2025</div>
+          <div>
+            <div class="role">
+              <h3>Senior Software Engineer / ML Engineer</h3>
+              <span>Optum / UnitedHealth Group</span>
+            </div>
+            <ul class="bullets">
+              <li>Redesigned Claims Submission and Tracking across Facets, Cosmos, and UNET using Next.js/React and backend data integrations; reported 15% NPS lift and 25% task-completion reduction in one variant.</li>
+              <li>Built Kafka ingestion pipelines and optimized SQL workflows; reported 30% throughput improvement, 40% query-latency reduction, and 5-7 hours/week operational savings in SDE-oriented variants.</li>
+              <li>Developed CNN/PyTorch CMS-1500 form extraction workflow; reported 90% accuracy for structured information extraction.</li>
+              <li>Standardized KPI extraction using Flamingo Mixtral LLM APIs and fine-tuned BERT-large NER; reported 98.76% weighted F1 for address, client, email, name, and demographic entities.</li>
+              <li>Migrated CI/CD from Jenkins to GitHub Actions and supported API Gateway integration, Kubernetes, Spring Boot services, and cloud deployment surfaces.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="date">Jul 2021 - Jan 2022</div>
+          <div>
+            <div class="role">
+              <h3>Software Engineer</h3>
+              <span>Vodafone Group</span>
+            </div>
+            <ul class="bullets">
+              <li>Set up hybrid cloud infrastructure with Terraform, deploying VPCs across AWS and GCP.</li>
+              <li>Migrated legacy MySQL databases to AWS RDS PostgreSQL with zero downtime; one resume reports up to 70% lower customer latency.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="date">Mar 2019 - Jun 2019</div>
+          <div>
+            <div class="role">
+              <h3>Data Science Intern</h3>
+              <span>Nokia</span>
+            </div>
+            <ul class="bullets">
+              <li>Built a 5G equipment packaging / circuit board detection system by labeling 10K+ images and fine-tuning a TensorFlow YOLO model.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="projects-title">
+      <div class="section-header">
+        <h2 id="projects-title">Projects And Work Products</h2>
+        <p>Resume-backed projects are separated from repository-only discoveries. Confidence reflects source strength.</p>
+      </div>
+      <div class="project-list">
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3>NovaNewz / News-Tracking-Cloudfare</h3>
+              <p>Neutral news retrieval, ranking, and citation-grounded RAG platform for skewed or unverified reporting.</p>
+            </div>
+            <span class="confidence high">High confidence</span>
+          </div>
+          <div class="tech-tags">
+            <span class="tag">Next.js 14</span><span class="tag">TypeScript</span><span class="tag">Cloudflare Workers</span><span class="tag">D1</span><span class="tag">Vectorize</span><span class="tag">OpenAI embeddings</span><span class="tag">RAG</span>
+          </div>
+          <ul class="bullets">
+            <li>Built serverless news platform with Cloudflare edge backend and React/TypeScript UI.</li>
+            <li>Implemented semantic search over 75K+ article corpus and neutrality-aware reranking; reported Neutral@10 of 90%.</li>
+            <li>Created bias evaluation loop with multi-rater labels, Cohen's kappa / Krippendorff's alpha, and Macro-F1 improvement from 0.66 to 0.92.</li>
+            <li>Reduced unsupported-claim rate by 95% with top-5 retrieval and citation-grounded synthesis.</li>
+          </ul>
+          <a href="https://github.com/sarrthak/News-Tracking-Cloudfare">github.com/sarrthak/News-Tracking-Cloudfare</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3>Noteboard.ai</h3>
+              <p>AI coding and product planning harness for turning context into plans, architecture, and implementation workflows.</p>
+            </div>
+            <span class="confidence high">High confidence</span>
+          </div>
+          <div class="tech-tags">
+            <span class="tag">LangGraph</span><span class="tag">Neo4j</span><span class="tag">Redis</span><span class="tag">Gemma 4</span><span class="tag">Next.js</span><span class="tag">Agent workflows</span>
+          </div>
+          <ul class="bullets">
+            <li>Portfolio data describes voice-to-ticket capture, HLD generation with Mermaid/canvas architecture views, and planner/drafter/verifier agent loops.</li>
+            <li>Listed as a Cheng Wu Challenge finalist project in local portfolio data.</li>
+            <li>Public GitHub description: "Orchestrate The Chaos Of Software Development."</li>
+          </ul>
+          <a href="https://github.com/sarrthak/noteboard.ai">github.com/sarrthak/noteboard.ai</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3>Bloomington Transit App</h3>
+              <p>Live transit tracking app built for Luddy Hackathon by Team Remontada.</p>
+            </div>
+            <span class="confidence high">High confidence</span>
+          </div>
+          <div class="tech-tags">
+            <span class="tag">React Native signal</span><span class="tag">MVVM</span><span class="tag">Bloomington Transit API</span><span class="tag">GTFS Realtime</span><span class="tag">Maps</span>
+          </div>
+          <ul class="bullets">
+            <li>Won 1st place and $1,000 prize at Luddy Hackathon.</li>
+            <li>Portfolio source describes 24-hour build with bus tracking, 10-second polling, route filtering, schedules, and arrival alerts.</li>
+            <li>Public repo is a starter/public version of the Bloomington Transit app.</li>
+          </ul>
+          <a href="https://github.com/sarrthak/bloomington-transit-starter">github.com/sarrthak/bloomington-transit-starter</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3>Intelli Vine / IntelliVine2.0</h3>
+              <p>Agentic AI application to reduce context switching and improve enterprise response/onboarding workflows.</p>
+            </div>
+            <span class="confidence medium">Medium confidence</span>
+          </div>
+          <div class="tech-tags">
+            <span class="tag">Python</span><span class="tag">Agentic AI</span><span class="tag">Enterprise context</span><span class="tag">InnoQuest 2025</span>
+          </div>
+          <ul class="bullets">
+            <li>Cover letter says the project used meeting and enterprise data to improve response times in critical engineering scenarios and streamline onboarding.</li>
+            <li>Achievement listed as 2nd prize at InnoQuest 2025, Indiana University Bloomington.</li>
+            <li>Public GitHub description: "An Agentic AI based application to help a company reduce context switching."</li>
+          </ul>
+          <a href="https://github.com/sarrthak/IntelliVine2.0">github.com/sarrthak/IntelliVine2.0</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3>Deep Reinforcement Learning For Recommendation</h3>
+              <p>Spotify-session recommender trained with DDPG and deployed as an AWS containerized service.</p>
+            </div>
+            <span class="confidence medium">Resume-backed</span>
+          </div>
+          <div class="tech-tags">
+            <span class="tag">TensorFlow</span><span class="tag">AWS ECS</span><span class="tag">Docker</span><span class="tag">DDPG</span><span class="tag">130M Spotify sessions</span>
+          </div>
+          <ul class="bullets">
+            <li>Resume reports diversity improvement of 9.3% versus 7.6% and skipped-song prediction accuracy improvement from 54% to 49%.</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3>Tweet Emotion Recognition</h3>
+              <p>Transformer ensemble for class competition emotion classification.</p>
+            </div>
+            <span class="confidence medium">Resume-backed</span>
+          </div>
+          <div class="tech-tags">
+            <span class="tag">PyTorch</span><span class="tag">Hugging Face</span><span class="tag">RoBERTa</span><span class="tag">LLaMA-3 QLoRA</span><span class="tag">Mixtral 7B</span><span class="tag">FastAPI</span>
+          </div>
+          <ul class="bullets">
+            <li>Resume reports class-best macro-F1 of 0.62 and F2 greater than 0.93 on balanced labels.</li>
+            <li>Inference pipeline deployed through FastAPI and Docker.</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3>Healthcare AI And Claims Automation</h3>
+              <p>Production-adjacent extraction, KPI, and claims workflow systems from Optum / UnitedHealth Group work.</p>
+            </div>
+            <span class="confidence high">High confidence</span>
+          </div>
+          <div class="tech-tags">
+            <span class="tag">CNN</span><span class="tag">PyTorch</span><span class="tag">BERT-large NER</span><span class="tag">Mixtral</span><span class="tag">Kafka</span><span class="tag">SQL</span><span class="tag">Next.js</span>
+          </div>
+          <ul class="bullets">
+            <li>CMS-1500 form extraction reported at 90% accuracy.</li>
+            <li>KPI extraction reported at 98.76% weighted F1 for multiple entity types.</li>
+            <li>Claims platform redesign reported as improving NPS by 15%.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="skills-title">
+      <div class="section-header">
+        <h2 id="skills-title">Skills Metadata</h2>
+        <p>Deduplicated from resume variants and local portfolio data.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Languages</h3>
+          <p>Python, SQL, TypeScript, JavaScript, Java, R, C, C++, HTML, CSS.</p>
+        </article>
+        <article class="card">
+          <h3>AI / ML</h3>
+          <p>PyTorch, TensorFlow, Keras, Scikit-Learn, Hugging Face, BERT, LLaMA, Mixtral, GLM-4.5, LoRA, VideoMAE, YOLO, CNNs, RAG, vector search, ranking, NLP, computer vision.</p>
+        </article>
+        <article class="card">
+          <h3>Data And Evaluation</h3>
+          <p>Kafka, Hadoop, Spark, MapReduce, Flink, ETL, SQL optimization, Tableau, Power BI, A/B testing, ANOVA, Macro-F1, precision/recall, inter-annotator agreement.</p>
+        </article>
+        <article class="card">
+          <h3>Cloud / DevOps</h3>
+          <p>AWS Lambda, ECS, S3, RDS, API Gateway, Athena, EventBridge, SageMaker, GCP, GKE, Docker, Kubernetes, GitHub Actions, Jenkins, CircleCI, Terraform, Vercel, Cloudflare Workers.</p>
+        </article>
+        <article class="card">
+          <h3>Frontend / Backend</h3>
+          <p>React, Next.js, Angular 8, Node.js, Spring Boot, FastAPI, microservices, AEM, PostgreSQL, MongoDB, Neo4j, DynamoDB, D1.</p>
+        </article>
+        <article class="card">
+          <h3>LLM Products</h3>
+          <p>LangGraph, agent workflow orchestration, prompt refinement, RAG timelines, citation-grounded synthesis, OpenAI embeddings, Cloudflare Workers AI, OpenAI GPT 5 Codex claims in local resumes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="education-title">
+      <div class="section-header">
+        <h2 id="education-title">Education, Achievements, Publications</h2>
+        <p>Where variants conflict, this section states the canonical reading and notes uncertainty.</p>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Indiana University Bloomington</h3>
+          <p>MS Data Science, Indiana, US, Aug 2025 - 2027. Coursework across variants: Machine Learning, Deep Learning, Distributed Computing, Statistics, A/B Testing, Cloud Computing, Databases, Software Management, ANOVA, Visualization, Computer Vision, Usable AI.</p>
+        </article>
+        <article class="card">
+          <h3>Vellore Institute of Technology</h3>
+          <p>B.Tech Electronics and Computer Science / Computer Science signal. Resume variants list Jul 2021 and GPA values from 3.5/4 to 4/4; local portfolio fallback lists 2019 - 2023 and CGPA 3.8/4. Verify before publishing externally.</p>
+        </article>
+      </div>
+      <div class="grid-2" style="margin-top: 16px;">
+        <article class="card">
+          <h3>Achievements</h3>
+          <ul class="bullets">
+            <li>1st place Luddy Hackathon with $1,000 prize for Bloomington Transit app.</li>
+            <li>2nd Prize InnoQuest 2025 at Indiana University Bloomington for Intelli Vine.</li>
+            <li>Bravo - Diamond Recognition for Jenkins to GitHub Actions migration.</li>
+            <li>Bravo - Diamond Recognition for request-flow simplification and API Gateway integration.</li>
+            <li>AWS Fundamentals: Going Cloud Native certificate, Oct 2020.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Publications</h3>
+          <ul class="bullets">
+            <li>Smart Water Distribution System Using Machine Learning and IoT.</li>
+            <li>Predictive Modeling of Queue Lengths and Waiting Times in E-Commerce Platforms: A Statistical Approach.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="repos-title">
+      <div class="section-header">
+        <h2 id="repos-title">Public GitHub Repository Scan</h2>
+        <p>Fetched from GitHub REST API for <a href="https://github.com/sarrthak">github.com/sarrthak</a>. Repository-only entries should not be treated as resume claims without additional review.</p>
+      </div>
+      <table class="repo-table">
+        <thead>
+          <tr>
+            <th>Repository</th>
+            <th>Description</th>
+            <th>Language</th>
+            <th>Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><a href="https://github.com/sarrthak/bloomington-transit-starter">bloomington-transit-starter</a></td><td>Public starter version of Bloomington Transit App by Team Remontada.</td><td>Not reported</td><td>2026-05-20</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/sarrthak">sarrthak</a></td><td>GitHub profile README.</td><td>Not reported</td><td>2026-05-20</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/noteboard.ai">noteboard.ai</a></td><td>Orchestrate The Chaos Of Software Development.</td><td>TypeScript</td><td>2026-05-20</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/portfolio">portfolio</a></td><td>Portfolio web application.</td><td>TypeScript</td><td>2026-05-13</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/vote-at-mun">vote-at-mun</a></td><td>Voting application for VITCMUN-2020.</td><td>JavaScript</td><td>2026-05-12</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/github-readme-stats">github-readme-stats</a></td><td>Dynamically generated stats for GitHub READMEs.</td><td>Not reported</td><td>2026-05-11</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/COSMOS-OS-CLI">COSMOS-OS-CLI</a></td><td>Operating-system education / CLI description.</td><td>Not reported</td><td>2026-05-01</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/Predicting-Flight-delays">Predicting-Flight-delays</a></td><td>Predict whether a flight will be delayed more than 15 minutes.</td><td>Not reported</td><td>2026-04-23</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/IntelliVine2.0">IntelliVine2.0</a></td><td>Agentic AI app to help companies reduce context switching.</td><td>Python</td><td>2026-03-31</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/News-Tracking-Cloudfare">News-Tracking-Cloudfare</a></td><td>LLM-based news article tracking and fake/skew assessment.</td><td>TypeScript</td><td>2026-03-12</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/B657-ComputerVision">B657-ComputerVision</a></td><td>Deep learning paper discussion quiz template for B657 Computer Vision.</td><td>Not reported</td><td>2026-02-17</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/Kuali-Bot">Kuali-Bot</a></td><td>Selenium bot to fill Kuali timesheet.</td><td>Python</td><td>2025-10-14</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/lifestyle-calories-burn">lifestyle-calories-burn</a></td><td>Calorie burn prediction using linear, L1/L2, and polynomial regression.</td><td>Jupyter Notebook</td><td>2025-10-13</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/simple-login-module">simple-login-module</a></td><td>Simple login module made using React.</td><td>Not reported</td><td>2022-11-06</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/ecommerce-store-RESTfulAPI">ecommerce-store-RESTfulAPI</a></td><td>Simple REST API model using Node.</td><td>JavaScript</td><td>2022-04-09</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/Kanban-board">Kanban-board</a></td><td>Simple kanban board for personal project tracking.</td><td>JavaScript</td><td>2021-09-30</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/OxyApp">OxyApp</a></td><td>Created with StackBlitz.</td><td>Not reported</td><td>2021-07-23</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/Tensorflow-object-detection-for-cutom-dataset">Tensorflow-object-detection-for-cutom-dataset</a></td><td>TensorFlow object detection for custom dataset.</td><td>Python</td><td>2020-03-26</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/munverse">munverse</a></td><td>MUN messaging system.</td><td>Not reported</td><td>2020-03-05</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/mrisa">mrisa</a></td><td>MRISA - Meta reverse image search API.</td><td>Python</td><td>2019-03-22</td></tr>
+          <tr><td><a href="https://github.com/sarrthak/hello-world">hello-world</a></td><td>Just another repository.</td><td>Not reported</td><td>2017-09-12</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" aria-labelledby="sources-title">
+      <div class="section-header">
+        <h2 id="sources-title">Source Provenance</h2>
+        <p>Use this when another model needs to understand where a claim came from.</p>
+      </div>
+      <div class="notice">
+        Resume files contain role-targeted variants. Prefer claims that appear in the latest canonical resume, TikTok LaTeX/PDF, current portfolio source, or public GitHub metadata. Verify GPA, B.Tech date, and any company-specific tailored phrasing before external publication.
+      </div>
+      <ul class="source-list" style="margin-top: 16px;">
+        <li><strong>Local resumes scanned:</strong> public/Sarrthak_Resume_MLE_2.pdf, public/Sarrthak_Tripathi_Resume.pdf, Resumes/*.pdf, Resumes/buffer_to_submit/*.pdf.</li>
+        <li><strong>Editable resume source:</strong> Resumes/Sarrthak_Tripathi_TikTok_ML_Intern.tex.</li>
+        <li><strong>Prompt source:</strong> Resumes/PROMPT.text.txt includes recruiter resume-review prompt format.</li>
+        <li><strong>Portfolio source:</strong> components/portfolioData.ts, components/App.tsx, README.md, app/api/github-activity/route.ts.</li>
+        <li><strong>Public web/GitHub:</strong> GitHub REST API for sarrthak repos; web search corroborated LinkedIn profile result containing github.com/sarrthak and sarrthak.tech.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="career-ops-title">
+      <div class="section-header">
+        <h2 id="career-ops-title">Career Operations Agent Directives</h2>
+        <p>Operational instructions for downstream agents using this file to evaluate, tailor, and prepare career materials.</p>
+      </div>
+      <div class="notice">
+        This metadata file is local-only work on branch <strong>career-ops-metadata-handoff</strong>. Do not publish this handoff file or its private operating notes to GitHub.
+      </div>
+      <ul class="source-list" style="margin-top: 16px;">
+        <li><strong>Agent identity:</strong> Career Operations Agent running inside Hermes Agent, powered by OpenRouter.</li>
+        <li><strong>Strategic frame:</strong> Treat career moves as strategic capital allocation decisions, not spray-and-pray applications.</li>
+        <li><strong>Connected workspace assumption:</strong> Portfolio repository at <code>/workspace/portfolio/</code>, career-ops framework at <code>/workspace/career-ops/</code>, and browser automation through Playwright/Browser Use. In this Windows session, the observed local portfolio path is <code>C:\Users\sarth\OneDrive\Desktop\media\repos\portfolio</code>.</li>
+        <li><strong>Strict truth:</strong> Use only objective, verifiable facts, metrics, and project details documented in the user's local portfolio repository. Do not invent work experience, metrics, or technologies.</li>
+        <li><strong>No spamming:</strong> Never auto-submit an application that evaluates below grade A or below 4.0/5.</li>
+        <li><strong>Agentic preparation, human verdict:</strong> Scan, evaluate, tailor CVs, and draft form-filling answers, but pause and alert the user via Telegram/Discord before final submission whenever possible.</li>
+        <li><strong>Rate limiting:</strong> Obey safe delay thresholds on portals to avoid triggering anti-bot mechanisms.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="handoff-title">
+      <div class="section-header">
+        <h2 id="handoff-title">LLM Handoff JSON</h2>
+        <p>The same structured data is embedded below as application/json with id <code>candidate-metadata</code>.</p>
+      </div>
+      <pre>{
+  "candidate": {
+    "name": "Sarrthak Tripathi",
+    "email": "sarrtrip@iu.edu",
+    "phone": "+1 (609) 532-5955",
+    "linkedin": "https://linkedin.com/in/tripsarrthak28",
+    "github": "https://github.com/sarrthak",
+    "website": "https://sarrthak.tech",
+    "current_focus": ["MS Data Science", "Applied AI", "ML engineering", "RAG", "computer vision", "data engineering"]
+  },
+  "recommended_llm_usage": {
+    "summary": "Use this file as candidate memory for resume tailoring, portfolio updates, recruiter narratives, project cards, and cover letters.",
+    "do_not_overwrite": ["Conflicting GPA/date facts without verification", "Repository-only entries as resume claims", "Private or non-public contribution counts"],
+    "preferred_positioning": "Machine learning engineer with production software engineering depth and applied AI project work."
+  },
+  "signature": {
+    "vendor": "OpenAI",
+    "model_name": "Codex based on GPT-5",
+    "knowledge_cutoff": "2024-06",
+    "generated_on": "2026-05-23",
+    "scan_basis": "Local workspace files, PDF text extraction with pdftotext, public GitHub REST API, and public web search."
+  }
+}</pre>
+    </section>
+
+    <footer class="signature">
+      <div>
+        <strong>Generated by OpenAI Codex based on GPT-5</strong>
+        <p>Knowledge cutoff: 2024-06. Generated on 2026-05-23 in the portfolio workspace.</p>
+      </div>
+      <span class="pill">handoff-ready</span>
+    </footer>
+  </main>
+
+  <script type="application/json" id="candidate-metadata">
+  {
+    "candidate": {
+      "name": "Sarrthak Tripathi",
+      "email": "sarrtrip@iu.edu",
+      "phone": "+1 (609) 532-5955",
+      "linkedin": "https://linkedin.com/in/tripsarrthak28",
+      "github": "https://github.com/sarrthak",
+      "website": "https://sarrthak.tech",
+      "locations": ["Bloomington, IN", "NYC metro signal from public profile"],
+      "availability": "12-week onsite Fall 2026 internship; available for Aug 10, Aug 24, Sep 8, or Sep 21 start dates",
+      "target_roles": ["Machine Learning Engineer", "Data Scientist", "AI Engineer", "Data Engineer", "Full-stack AI Engineer", "Software Engineer"]
+    },
+    "publication_policy": {
+      "branch": "career-ops-metadata-handoff",
+      "publish_to_github": false,
+      "note": "This handoff file and career operations directives are local-only and should not be published to GitHub."
+    },
+    "career_operations_agent_directives": {
+      "agent_identity": "Career Operations Agent running inside Hermes Agent, powered by OpenRouter.",
+      "strategic_frame": "Treat career moves as strategic capital allocation decisions, not spray-and-pray applications.",
+      "workspace_assumptions": {
+        "portfolio_repository": "/workspace/portfolio/",
+        "career_ops_framework": "/workspace/career-ops/",
+        "browser_automation": "Playwright/Browser Use",
+        "observed_current_workspace": "C:\\Users\\sarth\\OneDrive\\Desktop\\media\\repos\\portfolio"
+      },
+      "core_directives": [
+        "STRICT TRUTH: Use only objective, verifiable facts, metrics, and project details documented in the user's local portfolio repository. Do not hallucinate or invent work experience, metrics, or technologies.",
+        "NO SPAMMING: Never auto-submit an application that evaluates below grade A or below 4.0/5.",
+        "AGENTIC PREPARATION, HUMAN VERDICT: Scan, evaluate, tailor CVs, and draft form-filling answers. Pause and alert the user via Telegram/Discord before final Submit whenever possible.",
+        "RATE LIMITING: Obey safe delay thresholds on portals to avoid triggering anti-bot mechanisms."
+      ]
+    },
+    "education": [
+      {
+        "school": "Indiana University Bloomington",
+        "degree": "M.S. Data Science",
+        "dates": "Aug 2025 - 2027",
+        "coursework": ["Machine Learning", "Deep Learning", "Distributed Computing", "Statistics", "A/B Testing", "Cloud Computing", "Databases", "Visualization", "Computer Vision", "Usable AI"],
+        "current_gpa": "3.67/4",
+        "gpa_source_values": ["4.0/4.0", "3.6/4", "3.5/4", "3.4/4", "currently pursuing"],
+        "verification_note": "User confirmed current IUB GPA is 3.67/4; older resume variants disagree and should be treated as historical/provenance values."
+      },
+      {
+        "school": "Vellore Institute of Technology",
+        "degree": "B.Tech Electronics and Computer Science / Computer Science signal",
+        "dates_source_values": ["Jul 2021", "2019 - 2023"],
+        "coursework": ["Statistics", "Database Management", "Data Structures", "Data Visualization", "Linear Algebra", "Cloud Computing", "Artificial Intelligence"],
+        "gpa_source_values": ["4/4", "3.8/4", "3.5/4", "8.49/10"],
+        "verification_note": "Resume and portfolio variants conflict on graduation date and GPA."
+      }
+    ],
+    "experience": [
+      {
+        "organization": "Indiana University Bloomington / IU Athletics",
+        "title": "Data Scientist",
+        "dates": "Aug 2025 - Present",
+        "themes": ["Olympic diving records", "RAG", "Hadoop", "GLM-4.5", "LLaMA LoRA", "VideoMAE V2", "Divemeets ETL", "Spark", "Flink", "ANOVA", "Tableau"],
+        "metrics": ["40% retrieval accuracy improvement", "15 hours/week manual review reduction", "60% few-shot prediction accuracy improvement", "1,000 historical videos", "10,000-record dataset", "60% training outcome improvement in some variants"]
+      },
+      {
+        "organization": "Optum / UnitedHealth Group",
+        "title": "Senior Software Engineer / Machine Learning Engineer",
+        "dates": "Jan 2022 - Sep 2025",
+        "themes": ["Claims platform", "Facets", "Cosmos", "UNET", "Next.js", "React", "Spring Boot", "Kafka", "SQL optimization", "CMS-1500 extraction", "BERT NER", "Mixtral", "CI/CD", "Kubernetes"],
+        "metrics": ["15% NPS lift", "30% Kafka throughput improvement", "90% CMS-1500 extraction accuracy", "98.76% weighted F1 for KPI extraction", "40% query latency reduction in one variant"]
+      },
+      {
+        "organization": "Vodafone Group",
+        "title": "Software Engineer",
+        "dates": "Jul 2021 - Jan 2022",
+        "themes": ["Terraform", "AWS", "GCP", "VPCs", "AWS RDS PostgreSQL", "MySQL migration"],
+        "metrics": ["Zero-downtime migration", "Up to 70% customer latency reduction in one variant"]
+      },
+      {
+        "organization": "Nokia",
+        "title": "Data Science Intern",
+        "dates": "Mar 2019 - Jun 2019",
+        "themes": ["5G equipment packaging", "YOLO", "TensorFlow", "Image labeling"],
+        "metrics": ["10K+ labeled images"]
+      }
+    ],
+    "projects": [
+      {
+        "name": "NovaNewz / News-Tracking-Cloudfare",
+        "url": "https://github.com/sarrthak/News-Tracking-Cloudfare",
+        "source_confidence": "high",
+        "stack": ["Next.js", "TypeScript", "Cloudflare Workers", "D1", "Vectorize", "OpenAI embeddings", "RAG"],
+        "metrics": ["75K+ article corpus", "Neutral@10 90%", "Macro-F1 0.66 to 0.92", "95% unsupported-claim reduction"]
+      },
+      {
+        "name": "Noteboard.ai",
+        "url": "https://github.com/sarrthak/noteboard.ai",
+        "source_confidence": "high",
+        "stack": ["LangGraph", "Neo4j", "Redis", "Gemma 4", "Next.js"],
+        "signals": ["Cheng Wu Challenge finalist", "Voice-to-ticket", "Mermaid/canvas HLDs", "Planner/drafter/verifier workflow"]
+      },
+      {
+        "name": "Bloomington Transit App",
+        "url": "https://github.com/sarrthak/bloomington-transit-starter",
+        "source_confidence": "high",
+        "stack": ["Bloomington Transit API", "GTFS Realtime", "MVVM", "live maps"],
+        "signals": ["1st place Luddy Hackathon", "$1,000 prize", "24-hour build"]
+      },
+      {
+        "name": "Intelli Vine / IntelliVine2.0",
+        "url": "https://github.com/sarrthak/IntelliVine2.0",
+        "source_confidence": "medium",
+        "stack": ["Python", "Agentic AI", "enterprise meeting data"],
+        "signals": ["2nd Prize InnoQuest 2025", "context-switching reduction", "onboarding response workflows"]
+      },
+      {
+        "name": "Deep Reinforcement Learning for Recommendation System",
+        "source_confidence": "resume-backed",
+        "stack": ["TensorFlow", "DDPG", "AWS ECS", "Docker"],
+        "metrics": ["130M Spotify sessions", "9.3% versus 7.6% diversity", "skipped-song prediction accuracy 54% to 49%"]
+      },
+      {
+        "name": "Tweet Emotion Recognition",
+        "source_confidence": "resume-backed",
+        "stack": ["PyTorch", "Hugging Face", "RoBERTa", "LLaMA-3 QLoRA", "Mixtral 7B", "FastAPI", "Docker"],
+        "metrics": ["macro-F1 0.62", "F2 greater than 0.93"]
+      }
+    ],
+    "skills": {
+      "languages": ["Python", "SQL", "TypeScript", "JavaScript", "Java", "R", "C", "C++", "HTML", "CSS"],
+      "ai_ml": ["PyTorch", "TensorFlow", "Keras", "Scikit-Learn", "Hugging Face", "BERT", "LLaMA", "Mixtral", "GLM-4.5", "LoRA", "VideoMAE", "YOLO", "CNNs", "RAG", "Vector search", "Ranking", "NLP", "Computer vision"],
+      "data": ["Kafka", "Hadoop", "Spark", "MapReduce", "Flink", "ETL", "SQL optimization", "Tableau", "Power BI", "A/B testing", "ANOVA", "Macro-F1", "precision/recall", "inter-annotator agreement"],
+      "cloud_devops": ["AWS", "GCP", "Docker", "Kubernetes", "GitHub Actions", "Jenkins", "CircleCI", "Terraform", "Vercel", "Cloudflare Workers"],
+      "frontend_backend": ["React", "Next.js", "Angular 8", "Node.js", "Spring Boot", "FastAPI", "Microservices", "AEM", "PostgreSQL", "MongoDB", "Neo4j", "DynamoDB", "D1"]
+    },
+    "github_public_repositories": [
+      {"name": "bloomington-transit-starter", "url": "https://github.com/sarrthak/bloomington-transit-starter", "description": "Public starter version of Bloomington Transit App by Team Remontada.", "language": null, "updated_at": "2026-05-20"},
+      {"name": "sarrthak", "url": "https://github.com/sarrthak/sarrthak", "description": "GitHub profile README.", "language": null, "updated_at": "2026-05-20"},
+      {"name": "noteboard.ai", "url": "https://github.com/sarrthak/noteboard.ai", "description": "Orchestrate The Chaos Of Software Development.", "language": "TypeScript", "updated_at": "2026-05-20"},
+      {"name": "portfolio", "url": "https://github.com/sarrthak/portfolio", "description": "Portfolio web application.", "language": "TypeScript", "updated_at": "2026-05-13"},
+      {"name": "vote-at-mun", "url": "https://github.com/sarrthak/vote-at-mun", "description": "Voting application for VITCMUN-2020.", "language": "JavaScript", "updated_at": "2026-05-12"},
+      {"name": "github-readme-stats", "url": "https://github.com/sarrthak/github-readme-stats", "description": "Dynamically generated stats for GitHub READMEs.", "language": null, "updated_at": "2026-05-11"},
+      {"name": "COSMOS-OS-CLI", "url": "https://github.com/sarrthak/COSMOS-OS-CLI", "description": "Operating-system education / CLI description.", "language": null, "updated_at": "2026-05-01"},
+      {"name": "Predicting-Flight-delays", "url": "https://github.com/sarrthak/Predicting-Flight-delays", "description": "Predict whether a flight will be delayed more than 15 minutes.", "language": null, "updated_at": "2026-04-23"},
+      {"name": "IntelliVine2.0", "url": "https://github.com/sarrthak/IntelliVine2.0", "description": "Agentic AI app to help companies reduce context switching.", "language": "Python", "updated_at": "2026-03-31"},
+      {"name": "News-Tracking-Cloudfare", "url": "https://github.com/sarrthak/News-Tracking-Cloudfare", "description": "LLM-based news article tracking and fake/skew assessment.", "language": "TypeScript", "updated_at": "2026-03-12"},
+      {"name": "B657-ComputerVision", "url": "https://github.com/sarrthak/B657-ComputerVision", "description": "Deep learning paper discussion quiz template for B657 Computer Vision.", "language": null, "updated_at": "2026-02-17"},
+      {"name": "Kuali-Bot", "url": "https://github.com/sarrthak/Kuali-Bot", "description": "Selenium bot to fill Kuali timesheet.", "language": "Python", "updated_at": "2025-10-14"},
+      {"name": "lifestyle-calories-burn", "url": "https://github.com/sarrthak/lifestyle-calories-burn", "description": "Calorie burn prediction using linear, L1/L2, and polynomial regression.", "language": "Jupyter Notebook", "updated_at": "2025-10-13"},
+      {"name": "simple-login-module", "url": "https://github.com/sarrthak/simple-login-module", "description": "Simple login module made using React.", "language": null, "updated_at": "2022-11-06"},
+      {"name": "ecommerce-store-RESTfulAPI", "url": "https://github.com/sarrthak/ecommerce-store-RESTfulAPI", "description": "Simple REST API model using Node.", "language": "JavaScript", "updated_at": "2022-04-09"},
+      {"name": "Kanban-board", "url": "https://github.com/sarrthak/Kanban-board", "description": "Simple kanban board for personal project tracking.", "language": "JavaScript", "updated_at": "2021-09-30"},
+      {"name": "OxyApp", "url": "https://github.com/sarrthak/OxyApp", "description": "Created with StackBlitz.", "language": null, "updated_at": "2021-07-23"},
+      {"name": "Tensorflow-object-detection-for-cutom-dataset", "url": "https://github.com/sarrthak/Tensorflow-object-detection-for-cutom-dataset", "description": "TensorFlow object detection for custom dataset.", "language": "Python", "updated_at": "2020-03-26"},
+      {"name": "munverse", "url": "https://github.com/sarrthak/munverse", "description": "MUN messaging system.", "language": null, "updated_at": "2020-03-05"},
+      {"name": "mrisa", "url": "https://github.com/sarrthak/mrisa", "description": "MRISA - Meta reverse image search API.", "language": "Python", "updated_at": "2019-03-22"},
+      {"name": "hello-world", "url": "https://github.com/sarrthak/hello-world", "description": "Just another repository.", "language": null, "updated_at": "2017-09-12"}
+    ],
+    "source_provenance": {
+      "local_resumes": ["public/Sarrthak_Resume_MLE_2.pdf", "public/Sarrthak_Tripathi_Resume.pdf", "Resumes/*.pdf", "Resumes/buffer_to_submit/*.pdf", "Resumes/Sarrthak_Tripathi_TikTok_ML_Intern.tex"],
+      "portfolio_files": ["components/portfolioData.ts", "components/App.tsx", "README.md", "app/api/github-activity/route.ts"],
+      "public_web": ["https://github.com/sarrthak", "GitHub REST API users/sarrthak/repos", "web search result for LinkedIn profile with github.com/sarrthak and sarrthak.tech"]
+    },
+    "signature": {
+      "vendor": "OpenAI",
+      "model_name": "Codex based on GPT-5",
+      "knowledge_cutoff": "2024-06",
+      "generated_on": "2026-05-23",
+      "timezone": "America/New_York"
+    }
+  }
+  </script>
+</body>
+</html>
